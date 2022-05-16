@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="@{pageTitle}"></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+<main>
+    <div class="container">
+        <nav th:replace="fragment/header :: header"></nav>
+        <div class="container" style="max-width: 900px">
+            <div class="py-5 text-center">
+                <h2 th:text="${title}">Registration Page</h2>
+            </div>
+            <form th:action="@{/register}" th:object="${user}" method="post">
+                <div class="row g-3">
+                    <div class="col-12">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" id="username" th:field="*{username}" class="form-control" required />
+                        <div class="alert alert-danger font-weight-bold" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="firstName" class="form-label">First name</label>
+                        <input type="text" id="firstname" th:field="*{firstname}" class="form-control"
+                               required minlength="4" maxlength="50"/>
+                        <div class="alert alert-danger font-weight-bold" th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}"></div>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="lastName" class="form-label">Last name</label>
+                        <input type="text" id="lastname" th:field="*{lastname}" class="form-control"
+                               required minlength="4" maxlength="50" />
+                        <div class="alert alert-danger font-weight-bold" th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"></div>
+                    </div>
+                    <div class="col-12">
+                        <label for="address" class="form-label">Address</label>
+                        <input type="text" id="address" th:field="*{address}" class="form-control"
+                               required minlength="10" maxlength="150" />
+                    </div>
+                    <div class="col-12">
+                        <label for="mobile" class="form-label">Mobile Number</label>
+                        <input type="text" id="mobile" th:field="*{mobile}" class="form-control" required />
+                        <div class="alert alert-danger font-weight-bold" th:if="${#fields.hasErrors('mobile')}" th:errors="*{mobile}"></div>
+                    </div>
+                    <div class="col-12">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" id="email" th:field="*{email}" class="form-control" required />
+                        <div class="alert alert-danger font-weight-bold" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+                    </div>
+                    <div class="col-12">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" id="password" th:field="*{password}" class="form-control"
+                               required minlength="6" maxlength="10"/>
+                        <div class="alert alert-danger font-weight-bold" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+                    </div>
+                    <div class="col-12">
+                        <label for="repeatPassword" class="form-label">Repeat Password</label>
+                        <input type="password" id="repeatPassword" th:field="*{passwordAgain}" class="form-control"
+                               required minlength="6" maxlength="10"/>
+                        <div class="alert alert-danger font-weight-bold" th:if="${#fields.hasErrors('passwordAgain')}" th:errors="*{passwordAgain}"></div>
+                    </div>
+                    <div class="col-12">
+                        <input type="hidden" th:field="*{id}">
+                        <button class="w-100 btn btn-primary btn-lg" type="submit">Register</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>
